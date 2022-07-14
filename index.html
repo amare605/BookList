@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+    <style src="style.css"></style>
+    <title>Book List</title>
+</head>
+<body>
+   <div class="container">
+    <h1> 新增書本</h1>
+    <form id ="book-form">
+        <div>
+            <label for="title">書名</label>
+            <input type="text" id="title" class="u-full-width">
+        </div>
+        <div>
+            <label for="author">作者</label>
+            <input type="text" id="author" class="u-full-width">
+        </div>
+        <div>
+            <label for="isbn">ISBN編碼</label>
+            <input type="text" id="isbn" class="u-full-width">
+        </div>
+        <div>
+            <input type="submit" value="Submit" class="u-full-width">
+        </div>
+    </form>
+    
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>書名</th>
+                <th>作者</th>
+                <th>ISBN編碼</th>
+            </tr>
+        </thead>
+        <tbody id="book-list"></tbody>
+    </table>
+   </div>  
+
+   <script src="appes6.js"></script>
+</body>
+</html>
