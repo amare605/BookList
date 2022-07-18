@@ -13,6 +13,7 @@ class UI {
     addBookToList(book){
         const list = document.getElementById('book-list');
         // 建立 tr 元素
+
         const row = document.createElement('tr');
         
         // 插入 欄位
@@ -90,7 +91,7 @@ class Store{
                 books.splice(index, 1);
             }
         });
-
+        localStorage.setItem('books', JSON.stringify(books))
     }
 }
 // Dom load event
