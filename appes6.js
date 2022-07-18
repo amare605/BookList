@@ -59,6 +59,45 @@ class UI {
     }
 }
 
+// Local Storage Class
+class Store{
+    static getBooks(){
+        let books;
+        if(localStorage.getItem('books') === null) {
+             books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
+    }
+    static displayBooks(){
+        const books = Store.getBooks();
+        books.forEach(function(book){
+            const ui = new UI;
+            ui.addBookToList(book);
+        });
+    }
+
+    static addBook(book){
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books))
+    }
+    static removeBook(isbn){
+        const books = Store.getBooks();
+        books.forEach(function(book, index){
+            if(book.isbn === isbn){
+                books.splice(index, 1);
+            }
+        });
+
+    }
+}
+// Dom load event
+document.addEventListener('DOMContentLoaded', Store.displayBooks);
+
+
+
 // Event Listners for add book
 document.getElementById('book-form').addEventListener('submit',
     function(e){
@@ -81,6 +120,9 @@ document.getElementById('book-form').addEventListener('submit',
         // 新增書本到清單
         ui.addBookToList(book);
 
+        // Add to Local storage
+        Store.addBook(book);
+
         // UI Show success
         ui.showAlert('書本新增成功', 'success');
         // 清除已輸入的欄位
@@ -100,6 +142,9 @@ document.getElementById('book-list').addEventListener('click',function(e){
 
     // 刪除book
     ui.deleteBook(e.target);
+
+    // Remove from local storage
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
     // show message
     ui.showAlert(`此書刪除成功`, 'success');
